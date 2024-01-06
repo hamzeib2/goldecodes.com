@@ -1,0 +1,432 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    
+    <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+    <!--  -->
+    <!--  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="icon" href="/static/img/logo.jpg" /> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Online Shopping site</title>
+
+    <!--css file-->
+    
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- <script type="text/javascript" src="{% static 'js/get_location.js' %}"></script>         -->
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/telegram.js' %}" X-Content-Type-Options: nosniff></script>
+</head>
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Check Out </a>
+    </nav>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input  class="form-control" type="text" name="name" placeholder="Name..">
+                    </div>
+                    <div class="form-field">
+                        <input  class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div>
+                
+                <div id="shipping-info">
+                    <hr>
+                    <p>Shipping Information:</p>
+                    <!-- <button type="button" class="btn btn-outline-secondary mr-3 ml-4" onclick="Delivery()">Delivery</button> -->
+                    <button type="button" class="btn btn-outline-secondary ml-4 mr-3" onclick="transfer_Wallet()">USDT</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="Virtual_Card()">Coupon</button>
+                    <hr>
+                    <div id="form_payment">
+                        <p class=" ml-lg-5">Our Wallet : xasw234jjdncojkdojxxzd43</p>
+                
+                        <br>
+                         <div class="form-field">
+                                <input class="form-control ml-lg-5" type="text" id="Your_Wallet" name="address" placeholder="Your Wallet.." required>
+                            </div>
+                            <br>
+                            <div class="form-field">
+                                <input class="form-control ml-lg-5" type="text" id="T_Value" name="city" placeholder="Transacion Value." required>
+                            </div>
+                            <br>
+                            <div class="form-field">
+                                <input class="form-control ml-lg-5" type="text" id="T_Num" name="state" placeholder="Transacion Number.." required>
+                            </div>
+                            <br>
+                            <div class="form-field">
+                                <input class="form-control ml-lg-5" type="text" id="tele" name="zipcode" placeholder="Telegram Username.." required>
+                            </div>
+                    
+                    </div>
+                </div>
+                <hr>
+                <div id="con">
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+                </div>
+            </form>
+        </div>
+        <script>
+             let data
+           function LoadDATA(){
+            $.ajax({
+                type:'GET',
+                url:"{% url 'getcoupons' %}",
+                success:  function(response){
+                    data = response
+                        //generate_popup()
+                   
+                        }
+                    })
+                        
+                   }
+                LoadDATA()
+            function Delivery(){
+               $('#form_payment').empty()
+               $('#form_payment').append(
+                `
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" name="address" placeholder="Address.. " required>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" name="city" placeholder="City.." required>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" name="state" placeholder="State.." required>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" name="zipcode" placeholder="zip code.." required>
+                    </div> `
+               )
+            }
+
+            function transfer_Wallet(){
+                formbutton = document.getElementById('form-button')
+                if(!formbutton){
+                $('#con').append(`
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">`)}
+                $('#form_payment').empty()
+               $('#form_payment').append(
+                `
+                    <p class=" ml-lg-5">Our Wallet : xasw234jjdncojkdojxxzd43</p>
+                
+                <br>
+                 <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" id="Your_Wallet" name="address" placeholder="Your Wallet.." required>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" id="T_Value" name="city" placeholder="Transacion Value." required>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" id="T_Num" name="state" placeholder="Transacion Number.." required>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <input class="form-control ml-lg-5" type="text" id="tele" name="zipcode" placeholder="Telegram Username.." required>
+                    </div> `
+               )
+            }
+
+            function Virtual_Card(){
+                $('#con').empty()
+                $('#form_payment').empty()
+               $('#form_payment').append(
+                `
+                   
+                
+                <br>
+                 <div class="form-field">
+                        <input id="coupon" class="form-control ml-lg-5  " type="text" name="address" placeholder="Your Coupon..">
+                    </div>
+                    
+                    <button type="button" class="btn btn-success " onclick="confirm()" style="position: relative;left: 9%;top: 10%;">confirm</button>
+                   `
+                )
+            }
+function confirm(){
+     var couponn = document.getElementById('coupon').value
+     var to = document.getElementById('total').innerHTML
+     total = parseFloat(to)
+        for(let i=0;i<data.coupons.length;i++){
+            if(data.coupons[i].coupon == couponn){
+                console.log(total)
+               total2 = total - (total * (data.coupons[i].value / 100))
+               
+                get_offer_coupon(total2, couponn)
+                
+            }
+        }
+
+            }
+            let coupp
+    function get_offer_coupon(total2, couponn){
+        coupp = couponn
+        console.log(coupp)
+        $('#get_coupon').empty()
+        $('#get_coupon').append(`
+        <h5>Total:$ <span id="total">${total2}</span></h5>
+        `)
+    }
+        </script>
+
+
+        <br>
+        <div class="box-element hidden" id="payment-info">
+            <small>Final Step</small>
+            <button id="make-payment">Make Order</button>
+        </div>
+        
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element">
+            <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+            <hr>
+            <h3>Order Summary: <span id="order_id"></span></h3>
+            <hr>
+            <div class="cart-row">
+                <div style="flex:2"><img class="row-image" src=""></div>
+                <div style="flex:1"><p>Name</p></div>
+                
+                <div style="flex:1"><strong>Discount</strong></div>
+                <div style="flex:1"><p>Quantity</p></div>
+                <div style="flex:1"><strong>Total</strong></div>
+            </div>
+            {% for item in items %}
+            <div  class="cart-row">
+                <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                <div style="flex:1"><p ><span class="name">{{item.product.name}}</span></p></div>
+                
+                <div style="flex:1"><strong>{{item.product.offer}}%</strong></div>
+                <div style="flex:1"><p ><span class="quantit">{{item.quantity}}</span></p></div>
+                <div style="flex:1"><p>{{item.get_price}}$</p></div>
+            </div>
+            {% endfor %}
+            <h5>Items:  {{order.get_cart_quantity}}</h5>
+            <div id="get_coupon">
+            <h5>Total: $<span id="total">{{order.get_cart_total}}</span></h5>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" class="collect_data">
+    <!-- <div class="col-lg-6">
+    <div style="position: relative; top: 5px;" >
+        <h1 class="map btn btn-success">Here is your map</h1>
+        <button id="get-location-btn" class="location">update my location address</button>
+        <div style="height: 400px; width: 450px;">{{map|safe}}</div>
+    </div>
+    </div> -->
+</div>
+
+</body>
+<script>
+function send_diteles_to_bot(){
+    tele = document.getElementById('tele').value
+    Your_Wallet = document.getElementById('Your_Wallet').value
+    T_Value = document.getElementById('T_Value').value
+    T_Num = document.getElementById('T_Num').value
+    textt = document.getElementsByClassName('name')
+    textt2 = document.getElementsByClassName('quantit')
+    collect_data = document.getElementsByClassName('collect_data')
+    
+    let pro = []
+    let qua = []
+    
+    let products= []
+    console.log(collect_data)
+    if(textt.length == 1){
+        let  textt = document.querySelector('.name').innerHTML
+        let  textt2 = document.querySelector('.quantit').innerHTML
+        
+        pro.push(textt)
+        qua.push(textt2)
+        
+        for(let i=0;i<pro.length;i++){
+            products.push(pro[i] + ': ' + qua[i])
+        }
+        
+        
+
+        var user = '{{request.user}}'
+        console.log(products)
+        console.log(pro)
+        console.log(qua)
+        text = `
+        Details:
+        User: @${tele}
+        Email: ${user}
+        Product : ${products}
+        
+        Quantity: ${qua}
+
+        Wallet : ${Your_Wallet}
+        Transaction Value : ${T_Value}
+        transaction Num : ${T_Num}
+
+    `
+    sendMessage(text)
+    }
+    else{
+        let pro = []
+        let qua = []
+        
+        let products = []
+        textt = document.getElementsByClassName('name')
+        textt2 = document.getElementsByClassName('quantit')
+        
+        for(let i=0;i<textt.length;i++){
+            pro.push(textt[i].innerHTML)  
+        }
+        for(let i=0;i<textt.length;i++){
+            qua.push(textt2[i].innerHTML)  
+        }
+        
+       for(let i=0;i<pro.length;i++){
+            products.push(pro[i] + ': ' + qua[i])
+       }
+        
+        var user = '{{request.user}}'
+        console.log(products)
+        text = `
+        Details:
+        User: @${tele}
+        Email: ${user}
+        Product = ${products}
+
+        Quantity: ${qua}
+        
+        Wallet : ${Your_Wallet}
+        Transaction Value : ${T_Value}
+        transaction Num : ${T_Num}
+        `
+        sendMessage(text)
+    }
+    
+
+    
+}
+    
+</script>
+<script type="text/javascript">
+    var shipping = '{{order.shipping}}'
+    var total = '{{order.get_cart_total}}'
+
+    if (shipping == 'False') {
+        document.getElementById('shipping-info').innerHTML=''
+    }
+
+    if (user != 'AnonymousUser'){
+        document.getElementById('user-info').innerHTML=''
+    }
+
+    if(shipping == 'False' && user != 'AnonymousUser')
+    {
+        document.getElementById('form-wrapper').classList.add('hidden');
+        document.getElementById('payment-info').classList.remove('hidden')
+    }
+
+    var form = document.getElementById('form')
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('form sumed')
+        if(coupp == undefined){
+            coupp = ''
+        }
+        console.log(coupp)
+        document.getElementById('form-button').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
+
+    })
+
+    document.getElementById('make-payment').addEventListener('click',async function(e){
+        await send_diteles_to_bot()
+        submitformdata()
+    })
+
+    function submitformdata(){
+        console.log('payment clicked')
+        
+        var userformatdata = {
+            'name':null,
+            'email':null,
+            'total':total
+        }
+
+        var shippinginfo = {
+            'address':null,
+            'city':null,
+            'state':null,
+            'zipcode':null,
+            'total_price':null,
+            'coupon':null
+        }
+
+        if (shipping != 'False'){
+            shippinginfo.address = form.address.value
+            shippinginfo.city = form.city.value
+            shippinginfo.state = form.state.value
+            shippinginfo.zipcode = form.zipcode.value
+            shippinginfo.total_price = document.getElementById('total').innerHTML
+            shippinginfo.coupon = coupp
+        
+        }
+        
+        
+
+        if(user == 'AnonymousUser') {
+            userformatdata.name=form.name.value
+            userformatdata.email=form.email.value
+        }
+
+    var url = "/process_order/"
+    fetch(url , {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'form':userformatdata,'shipping':shippinginfo}),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Succes:',data);
+        // send_diteles_to_bot()
+        // alert('Your Order Has Been Placed');
+        // window.location.href = "{% url 'store' %}"; 
+    })
+    alert('Your Order Has Been Placed.'+'\n' + 'You Will Be Redirected Within 5 Seconds');
+    setTimeout(function() {
+        
+        window.location.href = "{% url 'store' %}";
+    }, 5000);
+        
+    }
+
+</script>
+<script type="text/javascript" src="{% static 'js/telegram.js' %}" ></script>
+
+</html>

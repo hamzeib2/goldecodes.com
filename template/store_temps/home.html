@@ -1,0 +1,20 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+ <div class="container">
+    <div class="form-box">
+
+        <h1>Sign Up</h1>
+    <div>
+        {% if user.is_authenticated %}
+        <h3>{{user.username}}</h3>
+        {% endif %}
+    </div>
+    <button type="submit"><a href="signup">signup</a></button><br>
+    <button type="submit"><a href="signin">signin</a></button><br>
+    <button type="submit"><a href="signout">signout</a></button><br>
+</div>
+
+</body>

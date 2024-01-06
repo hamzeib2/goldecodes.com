@@ -1,0 +1,744 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- google font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+     
+     <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+     <!--  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.jpg" />
+    <title>Online Shopping site</title>
+
+    <!--css file-->
+    <link rel="stylesheet" href="{% static 'css/slide.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/card-product.css' %}" />
+    
+    <link rel="stylesheet" href="{% static 'css/mainpagee2.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" >
+    <link href=" https://cdn.jsdelivr.net/npm/swiper@9.1.0/swiper-bundle.min.css " rel="stylesheet">
+    <script src="https://www.w3schools.com/js/myScript.js"></script>
+    <script type="text/javascript" src="{% static 'js/mainpage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    @media (max-width: 550px) {
+
+        .nav{
+    height: 60px;
+}
+#open-nav-sidebar{
+    display: block;
+}
+    .container-nav ul li a{
+        display: none;
+        margin-top: 3px;
+        
+    }
+.logo-container{
+    margin-left: 5px;
+    
+}
+.logo{
+    
+    width: 90px;
+    height: 65px;
+}
+.logo img{
+    width: 90px;
+}
+.search-container{
+    width: 150px;
+    margin-left: 25px;
+}
+.search-icon{
+    display: none;
+}
+.search-input{
+    width: 150px;
+    padding-left: 5px;
+}
+.card.swiper-slide {
+    left: 20%;
+   width: 80%;
+}
+.pro_slidebar-content{
+    width:150px;
+    overflow-y: scroll;
+}
+.pricee{
+    max-height: auto;
+}
+.forbtn button{
+    height:auto;
+}
+
+/*sidebar navigation****/
+.slidebar-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99999;
+    background-color: transparent;
+    transform: translateX(-100%);
+    display: flex;
+    transition: transform 0.3s ease;
+    opacity: 0;
+}
+
+.slidebar-container.open_sliderbar{
+    transform: translateX(0%);
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+}
+
+
+.slidebar-show {
+    transform: translateX(0%);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+#open-nav-sidebar{
+   margin-left: -70%;
+}
+
+.slidebar-content {
+    overflow-y: scroll;
+    background-color: rgb(212, 207, 207);
+    width: 260px;
+    height: 100%;
+    box-sizing: 5px 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.slidebar-top {
+    padding: 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 40px 0 90px;
+    padding-left: 30px;
+    background-color: rgb(19, 25, 33);
+    color: white;
+}
+
+.slidebar-top h2 {
+    font-size: 30px;
+    font-weight:800 ;
+    margin: 0;
+    display: flex;
+    position: relative;
+    top: -12px;
+}
+
+.slidebar-top i {
+    margin: 5px;
+    padding-right: 5px;
+    font-size: 25px;
+    position: relative;
+    top: -1px;
+}
+.slidebar-top .customer_per {
+    color: rgb(248, 228, 228);
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 19px;
+    position: absolute;
+    top: 52px;
+    left: 77px;
+    border: 1px solid;
+    padding: 2px 24px;
+}
+
+.slidebar-top .admin_page{
+    margin-left: 4px;
+    color: rgb(248, 228, 228);
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.slidebar-top .customer_per:hover {
+    color: #a2a7b6;
+}
+.slidebar-wrapper {
+    
+    height: 100%;
+    padding-bottom: 100px;
+}
+
+.slidebar-item {
+    padding-bottom: 40px;
+    padding-left: 30px;
+    border-top: 2.5px solid #555454;
+}
+
+.slidebar-item h2 {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.slidebar-item p {
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: rgb(65, 62, 62);
+}
+
+.slidebar-item p a{
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: rgb(65, 62, 62);
+    line-height: 1.7;
+}
+
+.slidebar-item p a:hover{
+    text-decoration: underline;
+    color: rgb(3, 24, 29);
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+
+#slidebar-container-close {
+    background-color: transparent;
+    align-self: flex-start;
+    font-size: 30px;
+    border: none;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    
+}
+
+
+.sliderbar-final-footer{
+    height: 100px;
+    background-color: rgb(19, 25, 33);
+    align-self: center;
+    justify-self: center;
+    vertical-align: middle;
+    
+}
+#sliderbar-text{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding-top: 25px;
+    color: #ccc;
+}
+/*------end slidebar----*/
+
+
+
+}
+
+@media (min-width: 500px) {
+    #open-nav-sidebar{
+        display: none;
+
+    }
+    #sliderbar-container{
+        display: none;
+    }
+}
+
+
+</style>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="container container-header">
+            <div class="logo-container border-white">
+                <div class="logo">
+                    <img src="/static/img/logoo.jpg" alt="">
+                </div>
+            </div>
+
+           
+            <div class="search-container">
+                <div class="row">
+                    <input type="text" id="input-box" class="search-input" placeholder="Filter By Value"  autocomplete="off">
+                    <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div class="result-box">
+                    
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- <div class="balance-container">
+                <p>Balance :
+                <div class="Bouns">100</div>
+                </p>
+            </div> -->
+
+           
+
+            <div class="cart-container border-white">
+                <a href="{% url 'cart' %}">
+                <i class="fa-solid fa-cart-shopping"></i>
+                {{cartItems}} Cart  </a>
+            </div>
+        </div>
+    </header>
+
+    <!--navigation-->
+    <nav class="nav">
+        <div class="container container-nav">
+            <ul>
+                <li class="border-white" id="open-nav-sidebar">
+                    <span class="open-nav-slider"><button class="nothing" onclick="show_slide()">
+                        <i class="fa-solid fa-bars"></i>
+                        eGift Cards</button>
+                    </span>
+                </li>
+                <li class="border-white"><a href="{% url 'store' %}">Main Store</a></li>
+                <li class="border-white "><a  href="{% url 'Amazon' %}"><span id="mobile">Amazon</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Itunes' %}">Itunes</a></li>
+                <li class="border-white "><a id="" href="{% url 'Razer_Gold' %}"><span id="electronic">Razer-Gold</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Master_Card' %}"><span id="home"> Master-Card</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Walmart' %}"><span id="fashion">Walmart</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Uber' %}"><span id="book">Uber</span></a></li>
+                <!-- <li class="border-white "><a id="" href="{% url 'XBOX' %}">XBOX</a></li> -->
+                <li class="border-white "><a id="" href="{% url 'FreeFire' %}">FreeFire</a></li>
+                <li class="border-white "><a id="" href="{% url 'Pubg' %}">Pubg</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidebar products-->
+    <div class="pro_slidebar-container" id="pro_sliderbar-container">
+        <div class="pro_slidebar-content">
+            <div class="pro_slidebar-top">
+                
+            </div>
+            <div class="pro_slidebar-wrapper">
+                <div class="pro_slidebar-item">
+                    <h2 id="hh1">About It :</h2>
+                    <p><a href="" id="name">name:</a></p>
+                    <p><a href="" id="amount_in">amount in: </a></p>
+                    <p><a href="" id="views">views:</a></p>
+                </div>
+                <div class="pro_slidebar-item">
+                    <h2>About It:</h2>
+                    <p><a href="" id="des_short">short:</a></p>
+                    <p><a href="" id="des_tall">tall:</a></p>
+                    <p><a href="" id=""></a></p>
+                </div>
+                <div class="pro_slidebar-item">
+                    <h2 id="hh2">More Info :</h2>
+                    <p><a href="" id="category">Category:</a></p>
+                    <p><a href="" id="price">Price:</a></p> 
+                   
+                </div>
+                <div class="forbtn" id="forbtn">
+                    <button>Add</button>
+                    
+                </div>
+               
+               
+            </div>
+        </div>
+        <!--
+        <button id="pro_slidebar-container-close" onclick="hide_slide()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>-->
+        
+    </div>
+
+    <!--sidebar navigation-->
+<div class="slidebar-container" id="sliderbar-container">
+    <div class="slidebar-content">
+        <div class="slidebar-top">
+            <i class="fa-solid fa-circle-user"></i>
+            <h3><span>{{request.user}}</span></h3>
+        </div>
+        <div class="slidebar-wrapper">
+            <div class="slidebar-item">
+                <h2><p><a href="{% url 'store' %}">Main Store</a></p></h2>
+            </div>
+            <div class="slidebar-item">
+                <h2><p><a  href="{% url 'coustomer_page' %}"><span id="mobile">Coustomer Page</span></a></p></h2>
+            </div> 
+            <div class="slidebar-item">
+                <h2><p><a  href="{% url 'Amazon' %}"><span id="mobile">Amazon</span></a></p></h2>
+            </div>
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'Itunes' %}">Itunes</a></p></h2>
+            </div>
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'Razer_Gold' %}"><span id="electronic">Razer-Gold</span></a></p></h2>
+                
+            </div>
+
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'Master_Card' %}"><span id="home"> Master-Card</span></a></p></h2>
+            </div>
+
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'Walmart' %}"><span id="fashion">Walmart</span></a></p></h2>
+            </div>
+
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'Uber' %}"><span id="book">Uber</span></a></p></h2>
+            </div>
+
+            <!-- <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'XBOX' %}">XBOX</a></p></h2>
+            </div> -->
+
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'FreeFire' %}">FreeFire</a></p></h2>
+            </div>
+            <div class="slidebar-item">
+                <h2><p><a id="" href="{% url 'Pubg' %}">Pubg</a></p></h2>
+            </div>
+
+            <div class="slidebar-item">
+                {% if user.is_authenticated %}
+                <p><a id="log" href="{% url 'logout' %}">Logout</a></p>
+                {% else %}
+                <p><a id="log" href="{% url 'login' %}">Login</a></p>
+                {% endif %}
+                    
+                
+            </div>
+            <center>
+            <div class="sliderbar-final-footer" id="sliderbar-text">Thanks For Your Visiting</div>
+            </center>
+        </div>
+    </div>
+    <button id="slidebar-container-close" onclick="hide_slide()">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+
+
+<script>
+    function show_slide(){
+        document.getElementById('sliderbar-container').classList.add('open_sliderbar')
+}
+
+function hide_slide(){
+        document.getElementById('sliderbar-container').classList.remove('open_sliderbar')
+}
+</script>
+
+
+    <div class="pro_container">
+
+        <div class="pro_box-container" id="all_search">
+        </div>
+    </div>
+
+<script>
+      let data
+           function LoadDATA(){
+            $.ajax({
+                type:'GET',
+                url:"{% url 'getproducts' %}",
+                success:  function(response){
+                    data = response
+                    console.log(data)
+                    GetResultSearch()
+                    getname(data)
+                    delete_e()
+                        }
+                    })
+                        
+                   }
+                  
+        
+        LoadDATA()
+
+
+        function get_index(pro ){
+        
+        index =  data.products.findIndex((el) => el.id === pro.id)
+        return index
+        }
+
+        function get_image(pro){
+        img = (pro.image)
+        return img
+
+    }
+    function get_extra_photo(pro){
+        imgp = (pro.extra_photo)
+        return imgp
+
+    }
+    function get_extra_img(pro){
+        imgx = (pro.extra_img)
+        return imgx
+
+    }
+
+    filter_product = []
+  let GetResultSearch = () =>{
+      let filter_product = [];
+     
+        filter_product.push(data.products.filter((x) => x.category === 'XBOX'));
+        // filter_product.push(data.products.find((x) => x.category === 'Fashion'));
+      
+      console.log(filter_product)
+      generateCartItems(filter_product[0]);
+  }
+
+
+
+        let generateCartItems = (basket) => {
+    if (basket.length !== 0) {
+       (all_search.innerHTML = basket
+        .map((x) => {
+          let { id, item } = x;
+          let search = data.products.find((y) => y.id === id) || [];
+          index = get_index(search)
+            count = index + 1
+            var img = get_image(search)
+            console.log(img)
+            image = img
+          return `
+          <div class="card swiper-slide">
+                    <div class="image-con">
+                        <span class="overr"><span class="inter"><span class="offer" style="font-size: 1.1rem;font-weight: bold;">Dis <i class="fa fa-arrow-down" aria-hidden="true" style="font-size: 1.2rem;font-weight: bold;"></i> ${search.offer}%</span></span></span>
+                        <span class="over"></span>
+                        <div class="card-image">
+                            <img src="/img/${image}" alt="" class="card-img">
+                        </div>
+                    </div>
+
+                    <div class="card-content">
+                        <h2 class="name">${search.name}</h2>
+                        <p class="descrp">${search.short_desc}</p>
+                        <div class="cfooter">
+                            <button id="${search.id}" class="popbtn-close" data-product="${search.id}" data-action="add" onclick="set_id(this)" >Add To Cart</button>
+                            <span class="pricee">Still In Storage ${search.quantity}</span>
+                    </div>
+                    </div>
+                </div>
+           
+          `;
+        })
+        .join(""));
+    } else {
+      ShoppingCart.innerHTML = ``;
+      label.innerHTML = `
+      <h2>Cart is Empty</h2>
+      <a href="index.html">
+        <button class="HomeBtn">Back to home</button>
+      </a>
+      `;
+    }
+  };
+
+
+  function delete_e(){
+    $('#amount_in').empty()
+    $('#name').empty()
+    $('#views').empty()
+    $('#des_short').empty()
+    $('#des_tall').empty()
+    $('#category').empty()
+    $('#price').empty()
+    $('#forbtn').empty()
+    $('#hh1').empty()
+    $('#hh2').empty()
+    $('#des_short').append(`
+    <p><a href="" id="des_short">XBOX eGift Card US</a></p>
+    `)
+}
+
+
+
+
+//  function show_info(id){
+//     ID = parseInt(id)
+//             //let pro = []
+//     pro = data.products.find((x) => x.id === ID)
+//     img = get_image(pro)
+//     var imgp = get_extra_photo(pro)
+//     var imgx = get_extra_img(pro)
+//             imagep  = imgp
+//             imagex = imgx
+//             count = index + 1
+//             image = img
+//     $('#amount_in').empty()
+    
+//     $('#amount_in').append(
+//         `<div class="imginfo" style="display: flex;justify-content: space-between;margin: 5% 10% 5% 0;">
+//         <img src="/img/${imagep}" alt="" class="card-img" height="100" width= "100">
+//         <img src="/img/${imagex}" alt="" class="card-img" height="100" width= "100">
+//         </div>`
+//     )
+//     $('#name').empty()
+//     $('#name').append(
+//         `<p>Name: ${pro.name}</p>`
+//     )
+//     $('#views').empty()
+//     $('#views').append(
+//         `<p>Views: ${pro.num_views}<i class="fa fa-eye"></i></p>`
+//     )
+//     $('#des_short').empty()
+//     $('#des_short').append(
+//         `<p>Descriptions: ${pro.short_desc}</p>`
+//     )
+//     $('#des_tall').empty()
+//     $('#des_tall').append(
+//         `<p>${pro.tall_desc}</p>`
+//     )
+//     $('#category').empty()
+//     $('#category').append(
+//         `<p>Type: ${pro.category}</p>`
+//     )
+//     $('#price').empty()
+//     $('#price').append(
+//         `<p>Price: ${pro.price}$</p>`
+//     )
+//     $('#forbtn').empty()
+//     $('#forbtn').append(
+//         `<button id="${pro.id}" class="popbtn-close " data-product="${pro.id}" data-action="add" onclick="set_id(this)">Add to Cart</button>
+//         `
+//     )
+// }
+forbtn
+
+category
+ //let pro = []
+ //pro = data.products.find((x) => x.id === ID)
+
+
+ function set_id(ele){
+        var user = '{{request.user}}'
+        var prdid = ele.dataset.product// بملف التيمبليت منيجيب داتا معينة عن طريق الاسم يلي بعد كلمة داتا يلي بالتيمبلت ,هون جبنا الاي دي تبع كل منتج
+        var action = ele.dataset.action//جبنا الاكشن يا اضافة يا حذف
+        console.log('prdid:',prdid,'action',action)
+        console.log('user:',user)
+
+        if(user === 'AnonymousUser'){//اذا المستخدم مانو مسجل دخول
+            addCookieItem(prdid , action)
+        }
+
+        else{
+           updateuserorder(prdid , action)
+        }
+}
+
+let kayword= []
+function getname(data){
+    prd = []
+    prd.push(data.products.filter((x) => x.category === 'Food'));
+    for(let i in prd){
+        kayword[i] = prd[i].name
+    }
+    console.log(kayword)
+    return kayword
+}
+
+let resultbox = document.querySelector('.result-box');
+let inputbox = document.querySelector('.search-input') || '';
+
+
+inputbox.onkeyup = function(){
+  let Farray = []
+  let result = [];
+  let input = inputbox.value;
+  if(input.length){
+      result = kayword.filter((key) => {
+         return key.toLowerCase().includes(input.toLowerCase());
+      });
+      console.log(result)
+      // Filter product ---> result
+     //localStorage.setItem('search', JSON.stringify(result))
+     //Farray = JSON.parse(localStorage.getItem('search'))
+      console.log(Farray)
+
+  }
+  display(result);
+
+  if(!result.length){
+      resultbox.innerHTML = '';
+  }
+}
+
+function display(result){
+  const content= result.map((list) =>{
+      return `<li class="li" onclick = slectedinput(this)>${list}</li>`;
+  })
+  resultbox.innerHTML = "<ul>" + content.join("") +"</ul>";
+}
+//"<a herf=search.html>"+ "</a>"
+// =====>>>>>> join('') ===>>>>main select a element form array in sub  string 
+
+function slectedinput(list){
+ inputbox.value = list.innerHTML;
+ resultbox.innerHTML = '';
+ //inputbox.onkeyup()
+ 
+}
+
+
+
+  
+  (function fd(){
+    const searchbox = document.querySelector('#input-box')
+    
+    Farray = []
+    searchbox.addEventListener('keyup' , (e) => {
+        const storeItems = document.querySelectorAll('.name')
+        const searchfilter = e.target.value.toLowerCase().trim()
+        console.log(storeItems)
+        storeItems.forEach((item) => {
+            if(item.textContent.includes(searchfilter)){
+                item.parentElement.parentElement.style.display ='block'
+            }else{
+                item.parentElement.parentElement.style.display = 'none'
+            }
+        })
+    })
+})();
+
+</script>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

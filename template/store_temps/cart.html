@@ -1,0 +1,217 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  
+  <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+  <!--  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="icon" href="/static/img/logo.jpg" /> -->
+    <title>Online Shopping site</title>
+
+    <!--css file-->
+    
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+<style>
+    @media (max-width: 550px) {
+        #p{
+            display: none;
+        }
+    }
+</style>
+
+</head>
+<body>
+    
+    {% if user.is_authenticated %}
+        
+    {% else %}
+        
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }} <a href="{% url 'login' %}">Click here</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Cart</a>
+    </nav>
+   
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box-element">
+    
+                <a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+    
+                <br>
+                <br>
+                <table class="table">
+                    <tr>
+                        <th><h5>Total: <strong>{{order.get_cart_total}}$</strong></h5></th>
+                        <th><h5>Items:<strong>{{order.get_cart_quantity}}</strong></h5></th>
+                        <th>
+                            {% if user.is_authenticated %}
+                            <a  style="float:right; margin:5px;" class="btn btn-success " href="{% url 'checkout' %}">Checkout</a>
+                            {% else %}
+                            <a  style="float:right; margin:5px;" class="btn btn-success disabled" role="button" href="{% url 'checkout' %}">Checkout</a>
+                            {% endif %}
+                        </th>
+                    </tr>
+                </table>
+    
+            </div>
+    
+            <br>
+       
+            
+            <div class="box-element">
+                <div class="cart-row ">
+                    <div id="p" style="flex:2"></div>
+                    <div style="flex:2"><strong>Item</strong></div>
+                    <div id="p" style="flex:2"><strong>Discount</strong></div>
+                    <div style="flex:2"><strong>Price</strong></div>
+                    <div style="flex:2"><strong>Quantity</strong></div>
+                    <div style="flex:2"><strong>Quantity(X10)</strong></div>
+                    <div style="flex:2"><strong>Total</strong></div>
+                </div> 
+               {% for item in items %}
+                <div class="cart-row">
+                    <div id="p" style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                    <div style="flex:2"><p>{{item.product.name}}</p></div>
+                    <div id="p" style="flex:2"><strong>{{item.product.offer}}%</strong></div>
+                    <div style="flex:2"><p>{{item.get_price_offer}}$</p></div>
+                    <div style="flex:2">
+                        <p class="quantity">{{item.quantity}}</p>
+                        <div class="quantity">
+                            <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}">
+                    
+                            <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'img/arrow-down.png' %}">
+                        </div>
+                    </div>
+                    <div style="flex:2">
+                        <p class="quantity">{{item.quantity}}</p>
+                        <div class="quantity">
+                            <img data-product="{{item.product.id}}" data-action="addX10" class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}">
+                    
+                            <img data-product="{{item.product.id}}" data-action="removeX10" class="chg-quantity update-cart" src="{% static  'img/arrow-down.png' %}">
+                        </div>
+                    </div>
+                    <div style="flex:2"><p>{{item.get_price}}$</p></div>
+                </div>
+              
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if predict_prd %}
+    <div class=" mt-5 ml-3"><div  style="background: #218838;width: 27%;margin-right: 2%;padding: 1%;color: white; text-align: center; margin: 0 5%;">other people also bought similer product</div> 
+    {% endif %}
+    <!-- <hr style="width: 25%;right: 37%;position: relative;"> --></div>
+    <div class="row">
+        {% for prd in predict_prd %}
+        <div class="col-lg-4 py-5 ml-3 mr-3" style="max-width: 350px; left: 5%;">
+            <img class="thumbnail" src="{{prd.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{prd.name}}</strong></h6>
+                <hr>
+                <div style="display: flex;justify-content: space-between;">
+                <button data-product={{prd.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                <a class="btn btn-outline-success" href="#">View</a>
+                <p ><strong>{{prd.price}}syp</strong></p>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+      
+    </div>
+
+    {% if predicted_prd_by_categories %}
+    <div class=" mt-5 ml-3"><div style="background: #218838;width: 17%;margin-right: 2%;padding: 1%;color: white; text-align: center; margin: 0 5%;">Recomended</div> </div>
+    {% endif %}
+    <div class="row">
+        {% for prd in predicted_prd_by_categories %}
+        <div class="col-lg-4 py-5 ml-3 mr-3" style="max-width: 350px; left: 5%;">
+            <img class="thumbnail" src="{{prd.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{prd.name}}</strong></h6>
+                <hr>
+    
+                <div style="display: flex;justify-content: space-between;">
+                    <button data-product={{prd.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <p ><strong>{{prd.price}}syp</strong></p>
+                </div>
+    
+            </div>
+        </div>
+        {% endfor %}
+      
+    </div>
+    
+    {% if predicted_from_same_categories %}
+    <div class=" mt-5 ml-3"><div style="background: #218838;width: 27%;margin-right: 2%;padding: 1%;color: white; text-align: center; margin: 0 5%;">Products from same category</div> </div>
+    {% endif %}
+    <div class="row">
+        {% for prd in predicted_from_same_categories %}
+        <div class="col-lg-4 py-5 ml-3 mr-3" style="max-width: 350px; left: 5%;">
+            <img class="thumbnail" src="{{prd.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{prd.name}}</strong></h6>
+                <hr>
+    
+                <div style="display: flex;justify-content: space-between;">
+                    <button data-product={{prd.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <p ><strong>{{prd.price}}syp</strong></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      
+    </div>
+<script>
+    var updatebtns = document.getElementsByClassName('update-cart')//منيجيب كل ازرار الاضافة للكارت
+    var user = '{{request.user}}'
+
+for(var i=0; i<updatebtns.length; i++){//عملنا حلقة لكل ازرار الاضافة للكارت للمنتجات مشان نضيف ليسنر لكل واحد
+    updatebtns[i].addEventListener('click', function(){
+        var prdid = this.dataset.product// بملف التيمبليت منيجيب داتا معينة عن طريق الاسم يلي بعد كلمة داتا يلي بالتيمبلت ,هون جبنا الاي دي تبع كل منتج
+        var action = this.dataset.action//جبنا الاكشن يا اضافة يا حذف
+        console.log('prdid:',prdid,'action',action)
+        console.log('user:',user)
+
+        if(user === 'AnonymousUser'){//اذا المستخدم مانو مسجل دخول
+            addCookieItem(prdid , action)
+        }
+
+        else{
+           updateuserorder(prdid , action)
+        }
+    })
+}
+</script>
+
+    
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

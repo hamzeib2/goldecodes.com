@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  
+  <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+  <!--  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="icon" href="/static/img/logo.jpg" /> -->
+    <title>Online Shopping site</title>
+
+    <!--css file-->
+    
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/telegram2.js' %}"></script>
+<style>
+.heading{
+    text-align: center;
+    font-size: 45px;
+    border-bottom: 2px dotted #000;
+    padding: 10px;
+    
+}
+
+.container{
+    background-color: #696868;
+    border-radius: 25px;
+}
+
+.btn-info{
+    width: 50%;
+    letter-spacing: 2px;
+    background: transparent;
+    transition: all 0.5s ease-in-out;
+}
+.btn-info:hover{
+    transform: scale(1.05);
+}
+
+.ico{
+    font-family: monospace;
+    font-size: 17px;
+}
+hr{
+    width: 80%;
+    color: white;
+}
+
+
+
+</style>
+
+    </head>
+
+<body style="color: #fafbfe;">
+    <br><br>
+    <div class="container">
+        <h2 class="heading">Contact US</h2>
+        <h2 style="text-align: center;">We Are Here For You </h2>
+        <p style="text-align: center;"> It Is Possible That There Will Be a Delay In Responding To Your Message , But We Will Respond</p>
+        <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="post">
+                {% csrf_token %}
+            <input type="text" id="user" name="username" required placeholder="Telegram Username" class="form-control">
+                <br>
+            <input type="text" id="subject" name="subject" required placeholder="Subject" class="form-control">
+                <br>
+           <textarea name="message" id="text" rows="6" placeholder="Message" class="form-control"></textarea>
+           <br>
+           <center>
+            <button class="btn btn-info" onclick="sendmessage()">submit</button>
+           </center>
+           <br>
+        </form>
+        </div>
+        <div class="col-md-1"></div>
+
+
+        <div class="col-md-5">
+            <p class="ico"> <i class="fab fa-telegram"></i> &nbsp; &nbsp; @GoldeCodes</p>
+            <p class="ico"> <i class="fa fa-envelope"></i> &nbsp; &nbsp; GoldeneCodes@gmail.com</p>
+            <p class="ico"> <i class="fa fa-clock"></i> &nbsp; &nbsp; 1:00pm to 9:00pm</p>
+            <hr>
+
+            
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendmessage(){
+        var user = document.getElementById('user').value
+        var subject = document.getElementById('subject').value
+        var message = document.getElementById('text').value
+        var email = '{{request.user}}'
+        text = `
+        From : ${email}
+        telegram : @${user}
+        subject : ${subject}
+        message : ${message}
+        `
+        sendMessage(text)
+        fitch_data(subject , message)
+        
+      
+    }
+
+    function fitch_data(subject , message){
+        var url = '/process_contact/'
+                        
+        fetch(url , {
+            method:'POST',
+            headers:{
+                    'Content_Type':'application/json',
+                    'X-CSRFToken': csrftoken,//هي الطريقة بالجافا سكريبت لنحل مشكلة التوكن وفينا نوصل لهي القيمة لان موجودة بسكريبت الماين كمان كل التيمبلت تورث من الماين
+                    },
+            body:JSON.stringify({'subject':subject,'message':message})//بعتنا المعلومات لاب ديت ايتم بالفيو بس مدري ليش خلاه سترينغ
+                })
+                .then((response) => {//بعد مانخلص ارسال الداتا رح يجينا ريسبونس من الفيو سماه بروميس ,,انو كلشي صار تمام وارسلها الفيو كجيسن
+                     return response.json() 
+                    })  
+                    .then((data) => {//هلق بدنا نعرض الداتا يلي اجت بعد الريسبونس
+                    console.log('data:',data)
+                    // location.reload()//هاي لتحديث الصفحة مشان قيم الكارت تتحدث     
+                    })
+                    alert("It's Take About 4 seconds To Send");
+                    setTimeout(function() {
+                        window.location.href = "{% url 'contact_us' %}";
+        
+                    }, 4000);
+                    }
+</script>
+
+<br><br>
+
+</body>
+
+</html>
+

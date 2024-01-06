@@ -1,0 +1,62 @@
+body {
+    background-color: rgba(202, 200, 200, 0.548);
+}
+form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+input {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    border-radius: 5px;
+}
+input ,
+select {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+select[name="customer"] option {
+    display:none;
+}
+select[ name="digital"] {
+    margin-top: 5px;
+}
+input[type="file"] {
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 4px;
+}
+
+select[name="category"] {
+    margin: 4px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 500;
+}
+input[type ="checkbox"] {
+    width: 20px;
+    display: inline-flex;
+}
+input[type="submit"] {
+    font-size: 27px;
+    border: none;
+    padding: 15px ;
+    width: 300px;
+    height: 54px;
+    background-color: rgb(25, 199, 92);
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+input[type="submit"]:hover {
+    background-color:rgb(24, 153, 73) ;
+    cursor: pointer;
+    color: white;
+}
+

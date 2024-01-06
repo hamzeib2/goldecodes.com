@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/prot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <title>LOGIN</title>
+    <style>
+        @media (max-width: 500px) {
+           .logo{
+               margin-left: -30%;
+           }
+           .se{
+               display: none;
+           }
+           .navigation a{
+               margin-left: 50%;
+           }
+           .wrapper{
+               top: 30%;
+               left: 8%;
+               width: 80%;
+           }
+           
+           .line{
+               display: none;
+           }
+        }
+   </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <h2 class="logo">
+            <img src="/static/img/logoo.jpg" alt="">
+        </h2>
+        <nav class="navigation">
+            <!-- <a href="">home</a> -->
+            <a class="se" href="">conect</a>
+            <a class="se" href="">about</a>
+            <a class="se" href="">servece</a>
+            <a href="{% url 'register' %}"><button class="btnlogin-popup">register</button></a>
+        </nav>
+    </header>
+    <div id="particles-js"></div>
+    <div class="wrapper">
+        <!-- <span class="icon-close"><ion-icon name="close"></ion-icon></span> -->
+
+        <div class="form-box login">
+            <h2>Login</h2>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="error_message">
+                    <center><p>
+                        {{ message }}
+                    </p></center>
+                </div>
+                {% endfor %}
+            {% endif %}
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" name="email" required>
+                    <label>Email </label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="{% url 'reset_password' %}">Forget Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't Have an account?! <a href="{% url 'register' %}" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <div class="marg"></div>
+    
+    <script  src="{% static 'js/particles.js' %}" X-Content-Type-Options: nosniff
+    ></script>
+    <script  src="{% static 'js/app.js' %}"></script>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+        

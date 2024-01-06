@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  -->
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    
+    <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+    <!--  -->
+
+    <!--  -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/static/img/logo.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Online Shopping site </title>
+
+    <!--css file-->
+    
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Customer Page</a>
+        <a class="navbar-brand" href="{% url 'store' %}">Go Back</a>
+    </nav>
+    <br>
+<!-- <div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Products</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
+                {% for i in products %}
+                <tr>
+                    <th>{{i.name}}</th>
+                    <th>{{i.category}}</th>
+                    <th>{{i.price}}</th>
+                </tr>
+                
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- for here -->
+
+<div class="row p-2">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+        <h5 class="pl-3"> Your Orders</h5>
+        <hr>
+        <div class="" style="background: #fff;">
+            
+            <table class="table table-sm">
+                <tr>
+                    
+                    
+                    <th>Orders</th>
+                    <th>Total Order : {{total_orders}}</th>
+                </tr>
+
+                {% for i in orders%}
+
+                <tr>
+                    
+                    <td> {{i.transaction_id}}</td>
+                    <td>{{i.state}}</td>
+                </tr>
+
+                {% endfor %}
+               
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+        <h5 class="pl-3">Products You Buy</h5>
+        <hr>
+        <div class="" style="background: #fff;">
+            
+            <table class="table table-sm">
+                <tr>
+                    <th></th>
+                    <th>Items</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    
+                </tr>
+                {% for item in items %}
+                {% for i in item %}
+                <tr>
+                    <td>{{i.product.name}}</td>
+                    <td>{{i.get_price}}$</td>
+                    <td>{{i.quantity}}</td>
+                    
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+        </div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>

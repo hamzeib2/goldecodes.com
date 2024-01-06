@@ -1,0 +1,218 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+
+* {
+   
+    font-family: 'Poppins', sans-serif;
+}
+
+.pro_container{
+    padding: 15px 9%;
+    padding-bottom: 100px;
+    padding-top: 100px;
+    
+}
+
+.pro_container .pro_box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(270px, 1fr));
+    gap: 35px;
+    padding: 20px 15px;
+    
+
+}
+
+    
+
+
+
+.card{
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    
+    background: rgb(209, 198, 198);
+    text-align: center;
+    
+    border-radius: 50px;
+   
+}
+
+.card-content{
+    max-height: 165px;
+}
+
+.image-con, 
+.card-content{
+    display: flex;
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-con{
+    row-gap: 5px;
+    position: relative;
+    padding: 25px 0;
+}
+
+.over{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #FF9900;
+    left: 0;
+    top: 0;
+    border-radius: 25px 25px 0 25px;
+   padding-top: 10;
+}
+
+.overr{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #4070F4;
+    left: 0;
+    top: 0;
+    border-radius: 25px 25px 0 25px;
+   padding-top: 10;
+}
+.overr::before,
+.overr::after{
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    right: 83%;
+    bottom: 75%;
+    border-radius: 50% 0 50% 20%;
+}
+
+.offer{
+    position: absolute;
+    transform: rotate(-50deg);
+    font-style: italic;
+    left: 5%;
+    top: 7%;
+}
+
+.inter{
+    z-index: 2;
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    left: -3%;
+    top: -3%;
+    background: gold;
+    border-radius: 60% 2% 60% 10%;
+    /* transform: rotate(-50deg);
+    font-style: italic; */
+}
+
+
+
+.over::before,
+.over::after{
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #FF9900;
+    right: 0;
+    bottom: -40px;
+}
+
+.over::after{
+    border-radius: 0 25px 0 0;
+    background: rgb(209, 198, 198);
+
+}
+
+.card-image{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFF;
+   
+
+}
+
+.card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid goldenrod;
+
+}
+
+.name{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.descrp{
+    font-weight: 600;
+    font-size: 1rem;
+    color: #707070;
+    text-align: center;
+}
+
+.cfooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pricee{
+    font-size: .9rem;
+    font-weight: 500;
+    border: 2px solid ;
+    color: #FFF;
+    border-radius: 25%;
+    background: gray;
+    padding:  5px;
+    margin-left: 20px;
+    
+
+}
+
+.button{
+    border: none;
+    font-size: 16px;
+    color: #FFF;
+    padding: 8px 16px;
+    background-color: #3184cc;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background: #265DF2;
+
+}
+
+.popbtn-close{
+    color: #fff;
+    background-color: #4070F4;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 5px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid;
+}
+.popbtn-close:hover{
+    color: #101b29;
+    background: #197df7;
+}
+
+
+

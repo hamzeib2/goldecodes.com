@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/prot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <title>Verifed Is You</title>
+    <style>
+        @media (max-width: 500px) {
+           .logo{
+               margin-left: -30%;
+           }
+           .se{
+               display: none;
+           }
+           .navigation a{
+               margin-left: 50%;
+           }
+           .wrapper{
+               top: 30%;
+               left: 8%;
+               width: 80%;
+           }
+           
+           .line{
+               display: none;
+           }
+        }
+   </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <h2 class="logo">logo</h2>
+        <!-- <nav class="navigation">
+           
+            <a href="{% url 'register' %}"><button class="btnlogin-popup">register</button></a>
+        </nav> -->
+    </header>
+    <div id="particles-js"></div>
+    <div class="wrapper">
+        <!-- <span class="icon-close"><ion-icon name="close"></ion-icon></span> -->
+
+        <div id="very" class="form-box login">
+            <h2>Verifed Is You</h2>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="error_message">
+                    <center><p>
+                        {{ message }}
+                    </p></center>
+                </div>
+                {% endfor %}
+            {% endif %}
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="text" name="code"  id="code" required>
+                    <label>Enter Code </label>
+                </div>
+                <!-- <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div> -->
+               
+                <button type="button" id="btn" class="btn" onclick="gotto()">Submit</button>
+                <div class="login-register">
+                    <p>Don't Have an account?! <a href="{% url 'register' %}" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <div class="marg"></div>
+    
+    <script type="text/javascript" src="{% static 'js/particles.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+<script>
+     let data
+           function LoadDATA(){
+            $.ajax({
+                type:'GET',
+                url:"{% url 'getcustomer' %}",
+                success:  function(response){
+                    data = response
+                    console.log(data)
+                   
+                        }
+                    })
+                        
+                   }
+                  
+        LoadDATA()
+
+    btn = document.getElementById('btn')
+    function gotto(){
+    code = document.getElementById('code').value
+    for(let i =0;i<data.customer.length;i++){
+        if(code == data.customer[i].reset_pass){
+            // window.location.href = "{% url 'resetpassword' %}";
+            know_user(code)
+        }
+    }}
+
+   function know_user(code){
+    var url = '/know_user/'
+
+fetch(url , {
+    method:'POST',
+    headers:{
+        'Content_Type':'application/json',
+        'X-CSRFToken': csrftoken,//هي الطريقة بالجافا سكريبت لنحل مشكلة التوكن وفينا نوصل لهي القيمة لان موجودة بسكريبت الماين كمان كل التيمبلت تورث من الماين
+    },
+    body:JSON.stringify({'code':code})//بعتنا المعلومات لاب ديت ايتم بالفيو بس مدري ليش خلاه سترينغ
+})
+.then((response) => {//بعد مانخلص ارسال الداتا رح يجينا ريسبونس من الفيو سماه بروميس ,,انو كلشي صار تمام وارسلها الفيو كجيسن
+    return response.json()
+
+})
+
+.then((data) => {//هلق بدنا نعرض الداتا يلي اجت بعد الريسبونس
+    console.log('data:',data)
+    window.location.href = "{% url 'resetpassword' %}";//هاي لتحديث الصفحة مشان قيم الكارت تتحدث
+    
+})
+}
+
+
+
+</script>
+</html>
+        

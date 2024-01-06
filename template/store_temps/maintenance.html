@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Under Maintenance</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+        <meta content="Coderthemes" name="author">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+
+        <!-- third party css -->
+        <link href="assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/vendor/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css">
+        <!-- third party css end -->
+        <link rel="stylesheet" href="{% static 'assets/css/icons.min.css' %}" type="text/css"/>
+        <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" type="text/css" id="light-style">
+        <link href="{% static 'assets/css/app-dark.min.css' %}" rel="stylesheet" type="text/css" id="dark-style">
+        
+        <!-- App css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+        <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+        <!-- Ajax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- for csrftoken -->
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    </head>
+
+    <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+        <div class="mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+
+                        <div class="text-center">
+                            <img src="/static/img/maintenance.png" height="140" alt="File not found Image">
+                            <h3 class="mt-4">Site is Under Maintenance</h3>
+                            <p class="text-muted">We're making the system more awesome. We'll be back shortly.</p>
+
+                            <div class="row mt-5">
+                                <div class="col-md-4">
+                                    <div class="text-center mt-3 ps-1 pe-1">
+                                        <i class="dripicons-jewel bg-primary maintenance-icon text-white mb-2"></i>
+                                        <h5 class="text-uppercase">Why is the Site Down?</h5>
+                                        <p class="text-muted">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                                    </div>
+                                </div> <!-- end col-->
+                                <div class="col-md-4">
+                                    <div class="text-center mt-3 ps-1 pe-1">
+                                        <i class="dripicons-clock bg-primary maintenance-icon text-white mb-2"></i>
+                                        <h5 class="text-uppercase">What is the Downtime?</h5>
+                                        <p class="text-muted">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical but the majority.</p>
+                                    </div>
+                                </div> <!-- end col-->
+                                <div class="col-md-4">
+                                    <div class="text-center mt-3 ps-1 pe-1">
+                                        <i class="dripicons-question bg-primary maintenance-icon text-white mb-2"></i>
+                                        <h5 class="text-uppercase">Do you need Support?</h5>
+                                        <p class="text-muted">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embar.. <a href="mailto:GoldeneCodes@gmail.com" class="text-muted fw-bold">GoldeneCodes@gmail.com</a></p>
+                                    </div>
+                                </div> <!-- end col-->
+                            </div> <!-- end row-->
+                        </div> <!-- end /.text-center-->
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+
+        <footer class="footer footer-alt">
+            2023 - 2030 © GoldeCodes.com
+        </footer>
+
+        <!-- bundle -->
+        <script src="assets/js/vendor.min.js"></script>
+        <script src="{% static 'assets/js/vendor.min.js' %}"></script>
+        <script src="{% static 'assets/js/app.min.js' %}"></script>
+        <script src="assets/js/app.min.js"></script>
+
+        <!-- third party js -->
+        <script src="assets/js/vendor/apexcharts.min.js"></script>
+        <script src="{% static 'assets/js/vendor/apexcharts.min.js' %}"></script>
+        <script src="assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="{% static 'assets/js/vendor/jquery-jvectormap-1.2.2.min.js' %}"></script>
+        <script src="assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="{% static 'assets/js/vendor/jquery-jvectormap-world-mill-en.js' %}"></script>
+        <!-- third party js ends -->
+
+        <!-- demo app -->
+        <script src="assets/js/pages/demo.dashboard.js"></script>
+        <script src="{% static 'assets/js/pages/demo.dashboard.js' %}"></script>
+        <!-- end demo js-->
+        
+    </body>
+</html>

@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  
+  <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+  <!--  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/static/img/logo.jpg" />
+    <title>verify Your Email</title>
+
+    <!--css file-->
+    
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
+        <br> <a class="navbar-brand" href="#">{{co}}</a>
+    </nav>
+    <br><br>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
+        {{ message }} 
+        <button type="button" class="close" id="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+<script>
+    closee = document.getElementById('close')
+    closee.addEventListener('click', function(){
+        alertt = document.getElementById('alert')
+        alertt.style.display = 'none'
+    })
+</script>
+<br>
+   <div class="h" style="position: relative;justify-content: center;display: flex;top: 30%;">
+    <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">We Send Code For Your Email {{co}}</label>
+          <input type="text" class="form-control verifed"  data-product="{{code}}" id="verify" aria-describedby="" required>  
+        </div>
+        <button type="button" id="verifybtn" class="btn btn-primary" onclick="verifysub()">Submit</button>
+      </form>
+    </div>
+
+<script>
+   
+    
+    verifybtn = document.getElementById('verifybtn');
+    function verifysub(){
+        verify = document.getElementById('verify').value
+        verifed = document.getElementsByClassName('verifed')
+    for(var i=0; i<verifed.length; i++){
+        if( verifed[i].value != ''){
+            var ver = verifed[i].dataset.product
+        }}
+        if(verify != ''){
+            
+            var url = "/process_verify/"
+    fetch(url , {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'verify':verify}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Succes:',data);
+            
+        //  window.location.href = "{% url 'store' %}";
+        if(ver == verify){
+            window.location.href = "{% url 'store' %}";
+        }
+        else{
+            location.reload()
+        }
+    })
+
+        }
+    }
+   
+
+</script>
+
+    
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

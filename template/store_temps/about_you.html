@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  -->
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    
+    <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+    <!--  -->
+
+    <!--  -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/static/img/logo.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Online Shopping site </title>
+
+    <!--css file-->
+    
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">About You</a>
+        <a class="navbar-brand" href="{% url 'store' %}">Go Back</a>
+    </nav>
+    <br>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+        {{ message }} 
+        <button type="button" class="close" id="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+<script>
+    closee = document.getElementById('close')
+    closee.addEventListener('click', function(){
+        alertt = document.getElementById('alert')
+        alertt.style.display = 'none'
+    })
+</script>
+<!-- for here -->
+
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        
+            <div class="col-lg-6">
+                <div class="box-element" id="form-wrapper">
+                    <br>
+                <div class="input-group">
+                    <span class="input-group-text">Full Name</span>
+                    <input type="text" class="form-control" placeholder="Full Name" name="fname" value="{{customer.name}}" style="margin: 0 5%;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-text" style="width: 100px;">Email</span>
+                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{customer.email}}" style="margin: 0 5%;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-text" style="width: 100px;">Phone</span>
+                    <input type="text" class="form-control" placeholder="Phone" name="phone" value="{{customer.phone}}" style="margin: 0 5%;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-text">Telegram username</span>
+                    <input type="text" class="form-control" placeholder="Telegram username" name="teleuser" value="{{customer.telegram_username}}" style="margin: 0 5%;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-text">User Image</span>
+                    <input type="file" class="form-control" placeholder="User Image" name="user_img" value="{{customer.user_image}}" style="margin: 0 5%;">
+                </div>
+                <br>
+            </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="box-element" id="form-wrapper">
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-text" style="width: 100px;">AGE :</span>
+                        <select class="form-select" aria-label="Default select example" value="{{customer.age}}" name="age" style="width: 300px; margin: 0 5%;">
+                            <option selected="{{customer.age}}" value="{{customer.age}}"></option>
+                            <option value="under 15">under 15</option>
+                            <option value="from 15 to 20">from 15 to 20</option>
+                            <option value="from 21 to 25">from 21 to 25</option>
+                            <option value="from 26 to 32">from 26 to 32</option>
+                            <option value="from 33 to 36">from 33 to 36</option>
+                            <option value="from 37 to 42">from 37 to 42</option>
+                            <option value="from 43 to 47">from 43 to 47</option>
+                            <option value="more than 48">more than 48</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-text" style="width: 100px;">Study :</span>
+                        <select class="form-select" aria-label="Default select example" value="{{customer.study}}"  name="study" style="width: 300px; margin: 0 5%;">
+                            <option selected="{{customer.study}}" value="{{customer.study}}"></option>
+                            <option value="elementry school">elementry school</option>
+                            <option value="high school">high school</option>
+                            <option value="medical colleges">medical colleges</option>
+                            <option value="engineering colleges">engineering colleges</option>
+                            <option value="literary colleges">literary colleges</option>
+                            <option value="science colleges">science colleges</option>
+                            <option value="other">other</option>        
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-text" style="width: 100px;">Gender :</span>
+                        <select class="form-select" aria-label="Default select example" value="{{customer.gender}}" name="gender" style="width: 300px; margin: 0 5%;">
+                            <option selected="{{customer.gender}}" value="{{customer.gender}}"></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-text">Work Field :</span>
+                        <select class="form-select" aria-label="Default select example" value="{{customer.work_field}}" name="work" style="width: 300px; margin: 0 5%;">
+                            <option selected="{{customer.work_field}}" value="{{customer.work_field}}"></option>
+                            <option value="work in government department">work in government department</option>
+                            <option value="teacher">teacher</option>
+                            <option value="clothes dealer">clothes dealer</option>
+                            <option value="electronics dealer">electronics dealer</option>
+                            <option value="librarian">librarian</option>
+                            <option value="not_working">not_working</option>
+                            <option value="other">other</option>        
+                        </select>
+                    </div>
+                    <br>
+                </div>
+
+            </div>
+
+    </div>
+    <button  type="submit" style="left: 40%;width: 25%;height: 55px;margin: 3% 35%; border-radius: 20px;">Submit</button>
+  </form>
+
+
+</body>
+</html>

@@ -1,0 +1,1278 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    
+    <!-- <link href="{% static 'font/OfficinaSansStd-Bold.otf' %}" rel="stylesheet"> -->
+    <!--  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.jpg" />
+    <title>Online Shopping Site</title>
+
+    <!--css file-->
+    <!-- <link rel="stylesheet" href="{% static 'css/create_prd.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/mainpagee.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mainpagee2.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" >
+    <link href=" https://cdn.jsdelivr.net/npm/swiper@9.1.0/swiper-bundle.min.css " rel="stylesheet">
+    <script src="https://www.w3schools.com/js/myScript.js"></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--BootStrap-->
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+-->
+<style>
+    @media (min-width: 550px) {
+        .containerpp .box-container{
+            overflow-x: hidden;
+        }
+    }
+   @media (max-width: 550px) {
+    .containerpp .box-container .box .btn{
+        padding: 8px 15px;
+    }
+    .slide-con.swiper{
+        right: 10%;
+    }
+    .pop3card.open{
+        top: 340%;
+    }
+   .nav{
+       height: 60px;
+   }
+   #open-nav-sidebar{
+       display: block;
+   }
+       .container-nav ul li a{
+           display: none;
+           margin-top: 3px;
+           
+       }
+   .logo-container{
+       margin-left: 5px;
+       
+   }
+   .logo{
+       
+       width: 90px;
+       height: 65px;
+   }
+   .logo img{
+       width: 90px;
+   }
+   
+   
+   .search-container{
+       width: 150px;
+       margin-left: 25px;
+   }
+   .search-icon{
+       width: 100px;
+   }
+   .search-input{
+       width: 120px;
+       padding-left: 5px;
+   }
+   .result-box{
+    width: 175px;
+   }
+   .card.swiper-slide {
+       left: 20%;
+       width: 85%;
+   }
+   .pro_slidebar-content{
+       width:155px;
+       overflow-y: scroll;
+   }
+   .pricee{
+       max-height: auto;
+   }
+   .forbtn button{
+       height:auto;
+   }
+   
+   /*sidebar navigation****/
+   .slidebar-container {
+       position: fixed;
+       top: 0;
+       bottom: 0;
+       right: 0;
+       left: 0;
+       z-index: 99999;
+       background-color: transparent;
+       transform: translateX(-100%);
+       display: flex;
+       transition: transform 0.3s ease;
+       opacity: 0;
+   }
+   
+   .slidebar-container.open_sliderbar{
+       transform: translateX(0%);
+       background-color: rgba(0, 0, 0, 0.7);
+       opacity: 1;
+   }
+   
+   
+   .slidebar-show {
+       transform: translateX(0%);
+       background-color: rgba(0, 0, 0, 0.7);
+   }
+   
+   
+   #open-nav-sidebar{
+      margin-left: -70%;
+   }
+   
+   .slidebar-content {
+       overflow-y: scroll;
+       background-color: rgb(212, 207, 207);
+       width: 260px;
+       height: 100%;
+       box-sizing: 5px 5px 10px rgba(0, 0, 0, 0.8);
+   }
+   
+   .slidebar-top {
+       padding: 20px;
+       height: 60px;
+       display: flex;
+       align-items: center;
+       padding: 40px 0 90px;
+       padding-left: 30px;
+       background-color: rgb(19, 25, 33);
+       color: white;
+   }
+   
+   .slidebar-top h2 {
+       font-size: 30px;
+       font-weight:800 ;
+       margin: 0;
+       display: flex;
+       position: relative;
+       top: -12px;
+   }
+   
+   .slidebar-top i {
+       margin: 5px;
+       padding-right: 5px;
+       font-size: 25px;
+       position: relative;
+       top: -1px;
+   }
+
+   .slidebar-top h3 span{
+    margin-left: 5%;
+   }
+   .slidebar-top .customer_per {
+       color: rgb(248, 228, 228);
+       text-decoration: none;
+       text-transform: capitalize;
+       font-size: 19px;
+       position: absolute;
+       top: 52px;
+       left: 77px;
+       border: 1px solid;
+       padding: 2px 24px;
+   }
+   
+   .slidebar-top .admin_page{
+       margin-left: 4px;
+       color: rgb(248, 228, 228);
+       text-decoration: none;
+       text-transform: capitalize;
+   }
+   
+   .slidebar-top .customer_per:hover {
+       color: #a2a7b6;
+   }
+   .slidebar-wrapper {
+       
+       height: 100%;
+       padding-bottom: 100px;
+   }
+   
+   .slidebar-item {
+       padding-bottom: 40px;
+       padding-left: 30px;
+       border-top: 2.5px solid #555454;
+   }
+   
+   .slidebar-item h2 {
+       margin-bottom: 15px;
+       padding-top: 15px;
+       font-size: 1.4rem;
+       font-weight: 800;
+   }
+   
+   .slidebar-item p {
+       padding-top: 5px;
+       font-weight: bold;
+       font-size: 1rem;
+       color: rgb(65, 62, 62);
+   }
+   
+   .slidebar-item p a{
+       padding-top: 15px;
+       font-weight: bold;
+       font-size: 1.1rem;
+       text-decoration: none;
+       color: rgb(65, 62, 62);
+       line-height: 1.7;
+   }
+   
+   .slidebar-item p a:hover{
+       text-decoration: underline;
+       color: rgb(3, 24, 29);
+       font-weight: bolder;
+       font-size: 1.2rem;
+   }
+   
+   
+   #slidebar-container-close {
+       background-color: transparent;
+       align-self: flex-start;
+       font-size: 30px;
+       border: none;
+       color: white;
+       padding: 20px;
+       cursor: pointer;
+       
+   }
+   
+   
+   .sliderbar-final-footer{
+       height: 100px;
+       background-color: rgb(19, 25, 33);
+       align-self: center;
+       justify-self: center;
+       vertical-align: middle;
+       
+   }
+   #sliderbar-text{
+       font-size: 1.5rem;
+       font-weight: bolder;
+       text-align: center;
+       align-items: center;
+       justify-content: center;
+       vertical-align: middle;
+       padding-top: 25px;
+       color: #ccc;
+   }
+   /*------end slidebar----*/
+   
+   
+   
+   }
+   
+   
+   </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container container-header">
+            <div class="logo-container border-white">
+                <div class="logo">
+                    <img src="/static/img/logoo.jpg" alt="">
+                </div>
+            </div>
+
+           
+            <div class="search-container">
+                <div class="row">
+                    <input type="text" id="input-box" class="search-input" placeholder="Search in Products"  autocomplete="off">
+                    <div class="search-icon btnsearch">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div class="result-box">
+                    
+                </div>
+            </div>
+
+<script>
+
+
+
+let kayword= []
+function getname(data){
+    for(let i in data.products){
+        kayword[i] = data.products[i].name
+    }
+    console.log(kayword)
+    return kayword
+}
+
+
+
+let resultbox = document.querySelector('.result-box');
+let inputbox = document.querySelector('.search-input') || '';
+
+
+inputbox.onkeyup = function(){
+  let Farray = []
+  let result = [];
+  let input = inputbox.value;
+  if(input.length){
+      result = kayword.filter((key) => {
+         return key.toLowerCase().includes(input.toLowerCase());
+      });
+      console.log(result)
+      // Filter product ---> result
+     localStorage.setItem('result', JSON.stringify(result))
+     Farray = JSON.parse(localStorage.getItem('result'))
+      console.log(Farray)
+
+  }
+  display(result);
+
+  if(!result.length){
+      resultbox.innerHTML = '';
+  }
+}
+
+function display(result){
+  const content= result.map((list) =>{
+      return `<li class="btnsearch" onclick = "slectedinput(this)">${list}</li>`;
+  })
+  resultbox.innerHTML = "<ul>" + content.join("") +"</ul>";
+}
+//"<a herf=search.html>"+ "</a>"
+// =====>>>>>> join('') ===>>>>main select a element form array in sub  string 
+
+function slectedinput(list){
+ inputbox.value = list.innerHTML;
+ resultbox.innerHTML = '';
+ inputbox.onkeyup()
+}
+let btnsearch = document.querySelector('.btnsearch');
+btnsearch.addEventListener('click' , function(){
+    let input = inputbox.value;
+  if(input.length){
+      result = kayword.filter((key) => {
+         return key.toLowerCase().includes(input.toLowerCase());
+      });
+      
+      console.log(result)
+      fpro = []
+      for(let i=0;i<result.length ; i++){
+        fpro.push(data.products.find((x) => x.name == result[i]))
+      }
+      console.log(fpro)
+      window.location.href = "{% url 'search' %}";
+}})
+
+
+
+
+</script>
+
+
+            <!-- {% if user.is_authenticated %}
+            <div class="product-container">
+                <p>Add Your 
+                <div class="Bouns">Products:</div>
+                </p>
+                <button class="add_product" onclick="show_addpopup()">click here</button>
+            </div>
+            {% endif %} -->
+            <div class="cart-container border-white">
+                <a href="{% url 'cart' %}">
+                <i class="fa-solid fa-cart-shopping"></i>
+                {{cartItems}} Cart  </a>
+            </div>
+        </div>
+    </header>
+
+    <!--navigation-->
+    <nav class="nav">
+        <div class="container container-nav">
+            <ul>
+                <li class="border-white" id="open-nav-sidebar">
+                    <span class="open-nav-slider"><button class="nothing" onclick="show_slide()">
+                        <i class="fa-solid fa-bars"></i>
+                        Something Else</button>
+                    </span>
+                </li>
+                <!-- <li class="border-white "><a class="customer_per" href="{%url 'coustomer_page' %}">Customer Page</a></li> -->
+                <li class="border-white "><a  href="{% url 'Amazon' %}"><span id="mobile">Amazon</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Itunes' %}">Itunes</a></li>
+                <li class="border-white "><a id="" href="{% url 'Razer_Gold' %}"><span id="electronic">Razer-Gold</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Master_Card' %}"><span id="home"> Master-Card</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Walmart' %}"><span id="fashion">Walmart</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'Uber' %}"><span id="book">Uber</span></a></li>
+                <li class="border-white "><a id="" href="{% url 'XBOX' %}">XBOX</a></li>
+                <li class="border-white "><a id="" href="{% url 'FreeFire' %}">FreeFire</a></li>
+                <li class="border-white "><a id="" href="{% url 'Pubg' %}">Pubg</a></li>
+                    
+                    
+
+                
+            </ul>
+        </div>
+    </nav>
+    <!--here for sort Category in search page in JS-->
+<script>
+    
+
+</script>
+    <div class="addpopcontainer">
+        
+        <div class="addpopcard" id="addpup">
+            <img src="/static/img/avatar.png" alt="">
+            <h2>Hello Customer</h2>
+            <p>Add Your Product</p>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" placeholder="Product Name" name="name" id="name" >
+                <br>
+                <h2 class="popproduct">Add Photo for Product</h2>
+                <input type="file" placeholder="Add Photo" name="photo" id="photo" >
+                <h2 class="popproduct">Add Extra Photo</h2>
+                <input type="file" placeholder="Add Photo" name="Ephoto" id="photo" >
+                
+                <input type="number" placeholder="Set Your Price" name="price" id="price" >
+                <input type="text" placeholder="Short Descript" name="short_descript" id="email" >
+                <h2 class="popproduct">Select Category</h2>
+                <select class="popproduct" name="category" id="">
+                    <option value="Mobiles">Mobiles</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Home & Kitchen">Home & Kitchen</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="EGIFT Card">EGIFT Card</option>
+                    <option value="EGIFT Card">Market</option>
+                    <option value="Book">Book</option>
+                    <option value="shoes">shoes</option>
+                    <option value="clothes">clothes</option>
+                    <option value="other">other</option>
+                </select>
+                <input type="text" placeholder="What brand?" name="brand" id="email" >
+                <br><br>
+                
+                <div class="info">
+                <button class="popbtn-close" onclick="hide_popup()">CLOSE</button>
+                <button type="submit" class="popbtn-close ">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function show_addpopup(){
+            document.getElementById('addpup').classList.add('open');
+        }
+
+        function hide_addpopup(){
+            document.getElementById('addpup').classList.remove('open');
+        }
+    </script>
+
+    
+    <!--sidebar navigation-->
+    <div class="slidebar-container" id="sliderbar-container">
+        <div class="slidebar-content">
+            <div class="slidebar-top">
+                {% if customer.imageURL %}
+                <img src="{{customer.imageURL}}" alt="" style="width: 55px;height: 45px;border: solid 0;border-radius: 50%;">
+                {% else %}
+                <i class="fa-solid fa-circle-user"></i>
+                {% endif %}
+                
+                <!-- <i class="fa-solid fa-circle-user"></i> -->
+                
+                <h3><span >{{request.user}}</span></h3>
+            </div>
+            <div class="slidebar-wrapper">
+                <div class="slidebar-item">
+                    <h2>About You :</h2>
+                    {% if is_admin is True %}
+                    <p><a href="{%url 'admin_page' %}">admin page</a></p>
+                    {% endif %}
+                    <p><a class="customer_per" href="{%url 'coustomer_page' %}">Customer Page</a></p>
+                    <p><a href="{%url 'about_you' %}">Your Account</a></p>
+                    <p><a href="{%url 'contact_us' %}" target="blank">Contact Us</a></p>
+                </div>
+                <div class="slidebar-item">
+                    <h2>AMAZON :</h2>
+                    <p><a href="{%url 'Amazon' %}">Amazon US</a></p>
+                    <p><a href="{%url 'Amazon' %}">Amazon German</a></p>
+                    <p><a href="{%url 'Amazon' %}">Amazon UK</a></p>
+                </div>
+                <div class="slidebar-item">
+                    <h2>Razer Gold :</h2>
+                    <p><a href="{%url 'Razer_Gold' %}">Razer Gold US</a></p>
+                    <p><a href="{%url 'Razer_Gold' %}">Razer Gold Global</a></p>
+                    
+                </div>
+                <div class="slidebar-item">
+                    <h2>Master Card :</h2>
+                    <p><a href="{%url 'Master_Card' %}">Master Card US</a></p>
+                    <p><a href="">Master Card UK</a></p>
+                    
+                </div>
+                <div class="slidebar-item">
+                    <h2>Itunes :</h2>
+                    <p><a href="{%url 'Itunes' %}">Itunes US</a></p>
+                </div>
+
+                <div class="slidebar-item">
+                    <h2>Walmart :</h2>
+                    <p><a href="{%url 'Walmart' %}">Walmart US</a></p>
+                </div>
+
+                <div class="slidebar-item">
+                    <h2>UBER :</h2>
+                    <p><a href="{%url 'Uber' %}">Uber UK</a></p>
+                </div>
+
+                <div class="slidebar-item">
+                    <h2>XBOX :</h2>
+                    <p><a href="{%url 'XBOX' %}">XBOX</a></p>
+                </div>
+
+                <div class="slidebar-item">
+                    <h2>Free Fire :</h2>
+                    <p><a href="{%url 'FreeFire' %}">Free Fire</a></p>
+                </div>
+
+                <div class="slidebar-item">
+                    <h2>UC PUBG :</h2>
+                    <p><a href="{%url 'Pubg' %}">UC PUBG</a></p>
+                </div>
+
+                <div class="slidebar-item">
+                    {% if user.is_authenticated %}
+                    <br>
+                    <p><a id="log" href="{% url 'logout' %}">Logout</a></p>
+                    {% else %}
+                    <p><a id="log" href="{% url 'login' %}">Login</a></p>
+                    {% endif %}
+                </div>
+                    <br>
+                <center>
+                <div class="sliderbar-final-footer" id="sliderbar-text">Thanks For Your Visit</div>
+                </center>
+            </div>
+        </div>
+        <button id="slidebar-container-close" onclick="hide_slide()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    
+    
+<script>
+        function show_slide(){
+            document.getElementById('sliderbar-container').classList.add('open_sliderbar')
+    }
+    
+    function hide_slide(){
+            document.getElementById('sliderbar-container').classList.remove('open_sliderbar')
+    }
+</script>
+
+
+
+
+    <!--image slider -->
+    <section>
+        <div class="img-container">
+            <div class="img_slider">
+                <div class="img_slides">
+                    <input type="radio" name="radio-btn " id="radio1">
+                    <input type="radio" name="radio-btn " id="radio2">
+                    <input type="radio" name="radio-btn " id="radio3">
+                    <input type="radio" name="radio-btn " id="radio4">
+                    <input type="radio" name="radio-btn " id="radio5">
+                    <!-- this one don't repace -->
+                    <div class="img_slide Ifirst">
+                        <img  src="{{fad.imageURL}}">
+                    </div>
+                    <!-- ------------------------ -->
+
+                    {% for i in ad %}
+                    <div class="img_slide ">
+                        <img  src="{{i.imageURL}}">
+                    </div>
+                    {% endfor %}
+                    <!-- <div class="img_slide ">
+                        <img  src="/static/img/tele.jpg">
+                    </div>
+                    <div class="img_slide ">
+                        <img  src="/static/img/coupon.jpg">
+                    </div>
+                    <div class="img_slide ">
+                        <img  src="/static/img/coupon.jpg">
+                    </div> -->
+        
+                    <div class="img_nav_auto">
+                        <div class="auto-btn1"></div>
+                        <div class="auto-btn2"></div>
+                        <div class="auto-btn3"></div>
+                        <div class="auto-btn4"></div>
+                        <div class="auto-btn5"></div>
+                    </div>
+                </div>
+        
+                <div class="nav-manauel">
+                    <label for="radio1" class="manauel-btn"></label>
+                    <label for="radio2" class="manauel-btn"></label>
+                    <label for="radio3" class="manauel-btn"></label>
+                    <label for="radio4" class="manauel-btn"></label>
+                    <label for="radio5" class="manauel-btn"></label>
+                </div>
+        
+            </div>
+        </div>
+        <script type="text/javascript">
+            var counter = 1
+            setInterval(function (){
+                document.getElementById('radio' + counter).checked = true;
+                counter++;
+                if(counter > 5){
+                    counter = 1;
+                }
+            },5000);
+        </script>
+    <!---popup for new upload page-->
+    
+    
+    
+
+    <div class="pop1container">
+        <div class="popcard" id="pup">
+            <div class="mini_popcard">
+      
+            <img src="{{product.imageURL}}" alt="">
+            <h2>${data.products.id}</h2>
+            <p>{{product.name}}</p>
+            <div class="info">
+                <center class="textedit">
+                  <span class="tallestdescript">{{product.tall_desc}}</span>
+                </center>
+                <center>
+                    <span><i class="fa fa-eye"></i><strong class="numshow">{{product.num_views}} </strong></span>
+                </center>
+                <button class="popbtn-close" onclick="hide_popup()">CLOSE</button>
+                <button  class="popbtn-close ">Add to Cart</button>
+            </div>
+         
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function show_popup(id){
+            ID = parseInt(id)
+            //let pro = []
+            pro = data.products.find((x) => x.id === ID)
+                generate_popup(pro)
+                update(id)
+                document.getElementById('pup').classList.add('open');
+                
+            }
+            //document.getElementById('pup').classList.add('open');
+           // const views = document.querySelectorAll('#views')
+            //views.addEventListener('click' , () =>{
+              //  var pid = this.dataset.product
+
+            //})
+            //$(ele).attr(pid) 
+        
+    
+        function hide_popup(){
+            document.getElementById('pup').classList.remove('open');
+        }
+    </script>
+   
+<script>
+            let data
+           function LoadDATA(){
+            $.ajax({
+                type:'GET',
+                url:"{% url 'getproducts' %}",
+                success:  function(response){
+                    data = response
+                        //generate_popup()
+                        var img = '{{img}}'
+                        getname(data)
+                        
+                        }
+                    })
+                        
+                   }
+                  
+        
+        LoadDATA()
+        
+    function get_index(object ){
+        
+      index =  data.products.findIndex((el) => el.id === pro.id)
+      return index
+    }
+    
+    function get_image(object){
+        img = (pro.image)
+        return img
+
+    }
+    function get_extra_photo(object){
+        imgp = (pro.extra_photo)
+        return imgp
+
+    }
+    function get_extra_img(object){
+        imgx = (pro.extra_img)
+        return imgx
+
+    }
+        function generate_popup(object){
+            var img = get_image(pro)
+            var imgp = get_extra_photo(pro)
+            var imgx = get_extra_img(pro)
+            imagep  = imgp
+            imagex = imgx
+            console.log(get_index(pro))
+            index = get_index(pro)
+            count = index + 1
+            image = img
+            
+            console.log(image)
+            $('#pup').empty()
+            $('#pup').append(
+                `
+                <div class="mini_popcard">
+                <div class="image_info">
+            <img src="/img/${imagep}" alt="">
+            <img src="/img/${imagex}" alt="">
+            </div>
+            <h2>-------</h2>
+            
+            <p>${pro.name}</p>
+            <div class="info">
+                <center class="textedit">
+                  <span class="tallestdescript">${pro.tall_desc}</span>
+                </center>
+                <center>
+                    <div class="view_like">
+                    <span><i class="fa fa-eye"></i><strong class="numshow" id="${pro.id}">${pro.num_views} </strong></span>
+                    
+                    </div>    
+                </center>
+                <div class="btninfo">
+                <button class="popbtn-close" onclick="hide_popup()">CLOSE</button>
+                <button id="${pro.id}" class="popbtn-close " data-product="${pro.id}" data-action="add" onclick="set_id(this)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+                `
+            )
+        }
+        
+
+        function set_id(ele){
+        var user = '{{request.user}}'
+        var prdid = ele.dataset.product// بملف التيمبليت منيجيب داتا معينة عن طريق الاسم يلي بعد كلمة داتا يلي بالتيمبلت ,هون جبنا الاي دي تبع كل منتج
+        var action = ele.dataset.action//جبنا الاكشن يا اضافة يا حذف
+        console.log('prdid:',prdid,'action',action)
+        console.log('user:',user)
+
+        if(user === 'AnonymousUser'){//اذا المستخدم مانو مسجل دخول
+            addCookieItem(prdid , action)
+        }
+
+        else{
+           updateuserorder(prdid , action)
+        }
+}
+
+
+    
+
+        function generate_popup2(object){
+            var img = get_image(pro)
+            var imgp = get_extra_photo(pro)
+            var imgx = get_extra_img(pro)
+            imagep  = imgp
+            imagex = imgx
+            var im =img[0]
+            console.log(img)
+            console.log(get_index(pro))
+            index = get_index(pro)
+            count = index + 1
+            image = img
+            console.log(image)
+            $('#pup2').empty()
+            $('#pup2').append(
+                `
+                <div class="mini_popcard">
+                <div class="image_info">
+            <img src="/img/${imagep}" alt="">
+            <img src="/img/${imagex}" alt="">
+            </div>
+            <h2>-------</h2>
+            <p>${pro.name}</p>
+            <div class="info">
+                <center class="textedit">
+                  <span class="tallestdescript">${pro.tall_desc}</span>
+                </center>
+                <center>
+                    <div class="view_like">
+                    <span><i class="fa fa-eye"></i><strong class="numshow" id="${pro.id}">${pro.num_views} </strong></span>
+                    
+                    </div> 
+                </center>
+                <div class="btninfo">
+                <button class="popbtn-close" onclick="hide_popup2()">CLOSE</button>
+                <button id="${pro.id}" class="popbtn-close " data-product="${pro.id}" data-action="add" onclick="set_id(this)">Add to Cart</button>
+                </div>
+            </div>
+            </div>
+                `
+            )
+        }
+
+        function generate_popup3(object){
+            var img = get_image(pro)
+            var imgp = get_extra_photo(pro)
+            var imgx = get_extra_img(pro)
+            imagep  = imgp
+            imagex = imgx
+            var im =img[0]
+            console.log(img)
+            console.log(get_index(pro))
+            index = get_index(pro)
+            count = index + 1
+            image = img
+            $('#pup3').empty()
+            $('#pup3').append(
+                `
+                <div class="mini_popcard">
+                
+            <img src="/img/${image}" alt="">
+            
+            
+            <h2>-------</h2>
+            <p>${pro.name}</p>
+            <div class="info">
+                <center class="textedit">
+                  <span class="tallestdescript">${pro.tall_desc}</span>
+                </center>
+                <center>
+                    <div class="view_like">
+                    <span><i class="fa fa-eye"></i><strong class="numshow" id="${pro.id}">${pro.num_views} </strong></span>
+                    
+                    </div> 
+                </center>
+                <div class="btninfo">
+                <button class="popbtn-close" onclick="hide_popup3()">CLOSE</button>
+                <button id="${pro.id}" class="popbtn-close " data-product="${pro.id}" data-action="add" onclick="set_id(this)">Add to Cart</button>
+                </div>
+                </div>
+                </div>
+                `
+            )
+        }
+        function generate_popup4(object){
+            var img = get_image(pro)
+            var imgp = get_extra_photo(pro)
+            var imgx = get_extra_img(pro)
+            imagep  = imgp
+            imagex = imgx
+            var im =img[0]
+            console.log(img)
+            console.log(get_index(pro))
+            index = get_index(pro)
+            count = index + 1
+            image = img
+            $('#pup4').empty()
+            $('#pup4').append(
+                `
+                <div class="mini_popcard">
+                <div class="image_info">
+            <img src="/img/${imagep}" alt="">
+            <img src="/img/${imagex}" alt="">
+            </div>
+            <h2>-------</h2>
+            <p>${pro.name}</p>
+            <div class="info">
+                <center class="textedit">
+                  <span class="tallestdescript">${pro.tall_desc}</span>
+                </center>
+                <center>
+                    <div class="view_like">
+                    <span><i class="fa fa-eye"></i><strong class="numshow" id="${pro.id}">${pro.num_views} </strong></span>
+                    
+                    </div> 
+                </center>
+                <div class="btninfo">
+                <button class="popbtn-close" onclick="hide_popup4()">CLOSE</button>
+                <button id="${pro.id}" class="popbtn-close " data-product="${pro.id}" data-action="add" onclick="set_id(this)">Add to Cart</button>
+                </div>
+                </div>
+                </div>
+                `
+            )
+        }
+       function update(id){
+        let n = document.getElementById(id)
+        nu = n.innerHTML
+        num = parseInt(nu)
+        num = num + 1
+        n.innerHTML = num
+        console.log(num)
+       }
+</script>
+  
+  
+    <!-- swiper-->
+        
+    <div class="nameslide">Products.</div>
+    
+    
+    <div class="containerp">
+
+        <div class="box-container">
+    
+            <div class="box">
+                <img class="img_box" src="/static/img/amazon.jpg" alt="">
+                <h3>AMAZON</h3>
+                <p>Looking for the perfect gift for any occasion? Give the gift of endless possibilities with an Amazon gift card. Treat yourself or someone special to a world of choices in one card, unlocking a world of shopping and entertainment. It's the ultimate present for anyone on your list, letting them choose their own perfect gift. Purchase an Amazon gift card today and give the gift that keeps on giving</p>
+                <a href="{% url 'Amazon' %}" class="btn">GO TO</a>
+            </div>
+    
+            <div class="box">
+                <img class="img_box" src="/static/img/apple.jpg" alt="">
+                <h3>ITUNES</h3>
+                <p>Give the gift of music, movies, and more with an iTunes gift card. Perfect for any occasion, it's the ultimate present for anyone who loves entertainment. Let them choose from a world of options, including the latest music, movies, TV shows, apps, and more. Whether it's for a birthday, holiday, or just because, an iTunes gift card is the perfect way to show someone you care. Purchase an iTunes gift card today and give the gift of endless entertainment.</p>
+                <a href="{% url 'Itunes' %}" class="btn">GO TO</a>
+            </div>
+    
+            <div class="box">
+                <img class="img_box" src="/static/img/rezer gold.webp" alt="">
+                <h3>RAZER GOLD</h3>
+                <p>Looking for the perfect gift for the gamer in your life? Give them the gift of endless gaming possibilities with a Razer Gold gift card. With Razer Gold, they can access a wide range of games, in-game content, and exclusive deals from their favorite gaming platforms. It's the ultimate present for anyone who loves gaming, and it's perfect for any occasion. Purchase a Razer Gold gift card today and show someone you care by giving them the gift of gaming excitement.</p>
+                <a href="{% url 'Razer_Gold' %}" class="btn">GO TO</a>
+            </div>
+    
+            <div class="box">
+                <img class="img_box" src="/static/img/master card.webp" alt="">
+                <h3>MASTER CARD</h3>
+                <p>Looking for the ideal gift for that special someone in your life? Give them the gift of choice and convenience with a Mastercard gift card. With a Mastercard gift card, they can shop at millions of locations worldwide, both in-store and online, giving them the freedom to choose exactly what they want. It's the perfect present for any occasion, and it's sure to put a smile on their face. Purchase a Mastercard gift card today and give the gift of endless possibilities.</p>
+                <a href="{% url 'Master_Card' %}" class="btn">GO TO</a>
+            </div>
+    
+            <div class="box">
+                <img class="img_box" src="/static/img/walmart.png" alt="">
+                <h3>WALMART</h3>
+                <p>Looking for the perfect gift for a friend or family member? Look no further than a Walmart gift card! With a Walmart gift card, they can shop for anything they need, from groceries and household essentials to electronics and clothing. It's the gift of convenience and endless options, all in one card. Plus, with thousands of locations nationwide, they can easily redeem their gift card at any Walmart store. Give the gift of choice and practicality with a Walmart gift card today.</p>
+                <a href="{% url 'Walmart' %}" class="btn">GO TO</a>
+            </div>
+    
+            <div class="box">
+                <img class="img_box" src="/static/img/Uber.png" alt="">
+                <h3>UBER</h3>
+                <p>Looking for a thoughtful and practical gift for a friend or family member? Look no further than an Uber gift card! With an Uber gift card, they can easily access safe and reliable transportation whenever they need it. Whether it's a ride to work, a night out with friends, or a trip to the airport, an Uber gift card offers the convenience of getting around without the hassle of driving or parking. Plus, with the option to use the gift card for Uber Eats, they can also enjoy delicious meals delivered right to their door. Give the gift of convenience and flexibility with an Uber gift card today.</p>
+                <a href="{% url 'Uber' %}" class="btn">GO TO</a>
+            </div>
+
+            <div class="box">
+                <img class="img_box" src="/static/img/Xbox.jpg" alt="">
+                <h3>XBOX</h3>
+                <p>Looking for the perfect gift for the gamer in your life? Look no further than an Xbox gift card! With an Xbox gift card, they can access a world of entertainment, including games, movies, TV shows, music, and more. Whether they're into action-packed adventures, thrilling sports games, or immersive storytelling, an Xbox gift card gives them the freedom to choose from a wide variety of content. Plus, with the option to use the gift card for Xbox Live Gold or Game Pass subscriptions, they can take their gaming experience to the next level. Give the gift of endless entertainment with an Xbox gift card today.</p>
+                <a href="{% url 'XBOX' %}" class="btn">GO TO</a>
+            </div>
+
+            <div class="box">
+                <img class="img_box" src="/static/img/freefire.png" alt="">
+                <h3>FREE FIRE</h3>
+                <p>Unlock the ultimate gaming experience with a Free Fire diamond code! With exclusive access to in-game items, skins, and characters, you can customize your gameplay like never before. Don't miss out on the chance to stand out from the competition and take your Free Fire experience to the next level. Purchase a diamond code today and elevate your gaming experience!.</p>
+                <a href="{% url 'FreeFire' %}" class="btn">GO TO</a>
+            </div>
+
+            <div class="box">
+                <img class="img_box" src="/static/img/ucpubg.jpg" alt="">
+                <h3>UC PUBG</h3>
+                <p>Enhance your PUBG experience with a UC code! Unlock exclusive in-game items, outfits, and weapon skins to customize your gameplay and stand out from the crowd. Don't miss out on the opportunity to elevate your PUBG experience to the next level. Purchase a UC code today and dominate the battleground like never before!.</p>
+                <a href="{% url 'Pubg' %}" class="btn">GO TO</a>
+            </div>
+    
+        </div>
+    
+    </div>
+
+
+
+
+    <!---popup for trending page-->
+
+    
+
+
+    <!-- swiper-->
+
+    <div class="nameslide">Trending</div>
+    
+
+    <div class="containerpp">
+
+        <div class="box-container">
+            {% for product in  trending %}
+            <div class="box">
+                <img class="img_box" src="{{product.imageURL}}" alt="">
+                <h3>{{product.name}}</h3>
+               
+                <button id="{{product.id}}" class="btn" data-product="{{product.id}}" data-action="add" onclick="set_id(this)">Add To Cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <!-- <button id="${pro.id}" class="popbtn-close " data-product="${pro.id}" data-action="add" onclick="set_id(this)">Add to Cart</button> -->
+    
+    <!--footer-->
+
+    <footer class="Ffooter">
+        <div class="Fcontainer">
+            <div class="Frow">
+                <div class="Ffooter-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="Ffooter-col">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href= '{{what}}' target="blank">What's Up</a></li>
+                        <li><a href=  '{{tele}}' target="blank">Telegram</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="Ffooter-col">
+                    <h4>FAQs</h4>
+                    <ul>
+                        <li><a href=  '{{tele}}' target="blank">Get Coupon</a></li>
+                        <li><a href=  "{%url 'contact_us' %}" target="blank">Contact Us</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="Ffooter-col">
+                    <h4>follow us</h4>
+                    <div class="Fsocial-links">
+                        <a href="https://www.facebook.com/profile.php?id=100084300222790&mibextid=ViGcVu" target="blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </footer>
+   <center>
+   <div class="final-footer"><span class="final-text" style="color: #FF9900;">Gold eCode</span></div>
+</center>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+</body>
+<!--swiper-->
+<!--  <script  src="index.js"></script>-->
+<script src="{% static 'js/mainpage2.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src=" https://cdn.jsdelivr.net/npm/swiper@9.1.0/swiper-bundle.min.js "></script>
+<!--js-->
+<!--<script src="index.js"></script>-->
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+<script>
+    var swiper = new Swiper(".one", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next.one",
+            prevEl: ".swiper-button-prev.one",
+        },
+        breakpoints:{
+      0: {
+        slidesPerView: 1,
+      },
+      520: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      
+    },
+
+});
+</script>
+<script>
+    var swiper = new Swiper(".two", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next.two",
+            prevEl: ".swiper-button-prev.two",
+        },
+        breakpoints:{
+      0: {
+        slidesPerView: 1,
+      },
+      520: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      
+    },
+
+});
+</script>
+<script>
+    var swiper = new Swiper(".three", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next.three",
+            prevEl: ".swiper-button-prev.three",
+        },
+        breakpoints:{
+      0: {
+        slidesPerView: 1,
+      },
+      520: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      
+    },
+
+});
+</script>
+<script>
+    var swiper = new Swiper(".four", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next.four",
+            prevEl: ".swiper-button-prev.four",
+        },
+        breakpoints:{
+      0: {
+        slidesPerView: 1,
+      },
+      520: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      
+    },
+
+});
+</script>
+<script>
+    var swiper = new Swiper(".five", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next.five",
+            prevEl: ".swiper-button-prev.five",
+        },
+        breakpoints:{
+      0: {
+        slidesPerView: 1,
+      },
+      520: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      
+    },
+
+});
+</script>
+</html>

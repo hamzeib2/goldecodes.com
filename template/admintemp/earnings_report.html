@@ -1,0 +1,19 @@
+<!-- earnings_report.html -->
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for earning in earnings %}
+            <tr>
+                <td>{{ earning.earnings_date }}</td>
+                <td>{{ earning.earnings_amount }}</td>
+                <td>{{ earning.description }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
